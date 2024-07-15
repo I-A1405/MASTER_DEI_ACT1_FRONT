@@ -15,10 +15,11 @@
 }
 
 body {
-
+  width: 100%;
   position: absolute;
   min-height: 100%;
 }
+
 .navbar-global {
   background-color: var(--navbar-global-bg);
 }
@@ -27,7 +28,7 @@ body {
   color: var(--navbar-brand-color);
 }
 
-.navbar-global .navbar-user > li > a {
+.navbar-global .navbar-user>li>a {
   color: var(--navbar-user-link-color);
 }
 
@@ -111,10 +112,14 @@ body {
   margin-top: 60px;
   margin-left: 200px;
   padding: 20px;
-  height: 100% !important ;
+  height: 100% !important;
   overflow-y: auto;
 }
 
-.collapsed + .main-content {
+.collapsed+.main-content {
   margin-left: 60px;
+}
+
+.row {
+  width: 100%;
 }

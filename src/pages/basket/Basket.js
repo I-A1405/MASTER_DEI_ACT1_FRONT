@@ -1,18 +1,17 @@
-import CategoriesIndex from "../../component/categories";
 import Header from "../../component/layout/header";
 import Menu from "../../component/layout/menu";
+import BasketIndex from "../../component/basket/basketIndex";
 
-function Categories() {
-    return (
-
+function Basket() {
+    return (  
         <div>
             <Header userName={"Ivan E. "} />
             <div className="app__body">
                 <Menu />
-                <CategoriesIndex/>
+                <BasketIndex/>
             </div>
         </div>
     );
 }
 
-export default Categories;
+export default Basket;

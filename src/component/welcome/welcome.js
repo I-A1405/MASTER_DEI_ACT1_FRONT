@@ -1,9 +1,12 @@
 import './welcome.css';
+import { FaGrinStars } from "react-icons/fa";
 function Welcome() {
     return (
 
         <div className="main-content">
-            <h1 className="content__title">Welcome to Our Store!</h1>
+            <h1 className="content__title">
+                <FaGrinStars className='pl-5' />
+                Welcome to Avichuela's Store!</h1>
             <div className="row">
                 <div className="col-md-4">
                     <div className="card content__card">

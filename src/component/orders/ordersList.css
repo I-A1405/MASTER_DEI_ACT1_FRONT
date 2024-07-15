@@ -1,0 +1,34 @@
+.product-list__item {
+    border: 1px solid #ddd;
+    padding: 16px;
+    border-radius: 8px;
+  }
+  
+  .product-list__thumbnail img {
+    max-width: 100%;
+    border-radius: 8px;
+  }
+  
+  .product-list__details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .product-list__title {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .product-list__price,
+  .product-list__quantity,
+  .product-list__total,
+  .product-list__discount-percentage,
+  .product-list__discounted-total {
+    margin: 0.25rem 0;
+  }
+
+  .order-cart{
+    margin-bottom :20px;
+
+  }
