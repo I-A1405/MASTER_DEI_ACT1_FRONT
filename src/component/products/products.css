@@ -1,0 +1,16 @@
+.product-list {
+    padding: 20px 0;
+  }
+
+  .product-card {
+    transition: transform 0.2s;
+  }
+  
+  .product-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .product-card__image {
+    object-fit: cover;
+    height: 200px;
+  }

@@ -1,0 +1,35 @@
+.sidebar {
+  width: 250px;
+  transition: width 0.3s;
+  background-color: #343a40;
+  color: white;
+  height: 100vh;
+  position: fixed;
+}
+
+.sidebar--collapsed {
+  width: 50px;
+}
+
+.sidebar__toggle {
+  cursor: pointer;
+  padding: 10px;
+  background-color: #495057;
+  text-align: center;
+}
+
+.sidebar__nav {
+  padding: 10px;
+}
+
+.sidebar__item {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.sidebar__item:hover {
+  background-color: #495057;
+}
+.sidebar__item .nav-link {
+  width:  100%;
+}

@@ -1,0 +1,120 @@
+:root {
+  --navbar-global-bg: indigo;
+  --navbar-brand-color: white;
+  --navbar-user-link-color: white;
+  --navbar-primary-bg: #333;
+  --navbar-primary-border: #666;
+  --btn-expand-collapse-color: grey;
+  --btn-expand-collapse-hover-bg: #222;
+  --btn-expand-collapse-active-bg: #111;
+  --navbar-primary-menu-border: #444;
+  --navbar-primary-menu-link-color: #ccc;
+  --navbar-primary-menu-link-hover-bg: #000;
+  --navbar-primary-menu-link-hover-color: white;
+  --navbar-primary-menu-link-hover-icon-color: orchid;
+}
+
+body {
+
+  position: absolute;
+  min-height: 100%;
+}
+.navbar-global {
+  background-color: var(--navbar-global-bg);
+}
+
+.navbar-global .navbar-brand {
+  color: var(--navbar-brand-color);
+}
+
+.navbar-global .navbar-user > li > a {
+  color: var(--navbar-user-link-color);
+}
+
+.navbar-primary {
+  background-color: var(--navbar-primary-bg);
+  bottom: 0px;
+  left: 0px;
+  position: absolute;
+  top: 51px;
+  width: 200px;
+  z-index: 8;
+  overflow: hidden;
+  transition: all 0.1s ease-in-out;
+}
+
+.navbar-primary.collapsed {
+  width: 60px;
+}
+
+.navbar-primary.collapsed .glyphicon {
+  font-size: 22px;
+}
+
+.navbar-primary.collapsed .nav-label {
+  display: none;
+}
+
+.btn-expand-collapse {
+  position: absolute;
+  display: block;
+  left: 0px;
+  bottom: 0;
+  width: 100%;
+  padding: 8px 0;
+  border-top: solid 1px var(--navbar-primary-border);
+  color: var(--btn-expand-collapse-color);
+  font-size: 20px;
+  text-align: center;
+}
+
+.btn-expand-collapse:hover,
+.btn-expand-collapse:focus {
+  background-color: var(--btn-expand-collapse-hover-bg);
+  color: var(--navbar-brand-color);
+}
+
+.btn-expand-collapse:active {
+  background-color: var(--btn-expand-collapse-active-bg);
+}
+
+.navbar-primary-menu,
+.navbar-primary-menu li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.navbar-primary-menu li a {
+  display: block;
+  padding: 10px 18px;
+  text-align: left;
+  border-bottom: solid 1px var(--navbar-primary-menu-border);
+  color: var(--navbar-primary-menu-link-color);
+}
+
+.navbar-primary-menu li a:hover {
+  background-color: var(--navbar-primary-menu-link-hover-bg);
+  text-decoration: none;
+  color: var(--navbar-primary-menu-link-hover-color);
+}
+
+.navbar-primary-menu li a .glyphicon {
+  margin-right: 6px;
+}
+
+.navbar-primary-menu li a:hover .glyphicon {
+  color: var(--navbar-primary-menu-link-hover-icon-color);
+}
+
+.main-content {
+  margin-top: 60px;
+  margin-left: 200px;
+  padding: 20px;
+  height: 100% !important ;
+  overflow-y: auto;
+}
+
+.collapsed + .main-content {
+  margin-left: 60px;
+}

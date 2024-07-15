@@ -1,17 +1,46 @@
 import React from "react";
 import { useState } from "react";
+import Axios from "axios";
 import "./loginForm.css";
 export function LoginForm() {
-    const [userName, setName] = useState("")
-    const [password, setPassword] = useState("")
-    const [error, setError] = useState(false)
+    const [userName, setName] = useState("ieas-admin");
+    const [password, setPassword] = useState("ieas123456");
+    const [error, setError] = useState(false);
+    const [errorAuth, setErrorAuth] = useState(null);
+    const urlLogin = "https://dummyjson.com/auth/login";
+    const AUTHUSER={
+      username: 'emilys',
+      password: 'emilyspass',
+      expiresInMins: 30, // optional, defaults to 60
+    };
     const handleSubmit = (e) => {
-        e.preventDefault()
+        setErrorAuth(null);
+        e.preventDefault();
         if (userName === "" || password === "") {
-            setError(true)
-            return
+            setError(true);
+            return;
         }
-        setError(false)
+        setError(false);
+        try{
+          const userLogin ={username: userName, password};
+          if(userName === "ieas-admin" && password === "ieas123456" ) {
+            Object.assign(userLogin,AUTHUSER);
+            console.log("El valor del objeto extendido ", userLogin);
+            Axios.post(urlLogin,userLogin, { headers: { 'Content-Type': 'application/json' },})
+            .then(res => {
+              localStorage.setItem('token', res.data.token);
+              console.log(res.data);
+            })
+            .catch(error => console.error(error));
+          }
+          else{
+            setErrorAuth("Verifica las credenciales");
+          }
+
+        }catch(error){
+          setErrorAuth(error);
+        }
+
         // setUser({ userName, password });
 
     }
@@ -30,9 +59,22 @@ export function LoginForm() {
             <label htmlFor="exampleFormControlTextarea1" className="form-container__label form-label">Contraseña</label>
             <input type="password" className="form-container__input form-control" id="exampleFormControlTextarea1" value={password} onChange={e => setPassword(e.target.value)} placeholder="Ingresa contraseña del usuario" />
           </div>
+          {errorAuth != null && <div class="row">
+            <div class="col-12">
+              <div class="alert alert-danger" role="alert">
+              {errorAuth}
+              </div>
+            </div>
+          </div> }
+          { error && <div class="row">
+            <div class="col-12">
+              <div class="alert alert-danger" role="alert">
+                Todos los campos son obligatorios
+              </div>
+            </div>
+          </div> }
           <button type="submit" className="form-container__button btn btn-dark">Iniciar Sesión</button>
         </form>
-        {error && <p className="form-container__error text-danger mt-3">Todos los campos son obligatorios</p>}
       </section>
     </div>
     )
