@@ -8,19 +8,19 @@ import GetAllProducts from "../component/products/getAllproducts";
 import SearchProducts from "../component/products/search";
 import MyOrders from "../pages/orders/Orders";
 import Basket from "../pages/basket/Basket";
+import PrivateRoute from "./ProvateRoute";
 
 function Routing() {
     return (
         <Routes>
-            <Route path="/" element={<LoginPage />} />
-            <Route path="home" element={<Home />} />
-            <Route path="products" element={<Products />}>
+            <Route path="/" element={ <LoginPage />} />
+            <Route path="home" element={<PrivateRoute><Home /></PrivateRoute>} />
+            <Route path="products" element={<PrivateRoute><Products /></PrivateRoute>}>
                 <Route index element={<GetAllProducts />} />
                 <Route path="productssearch" element={<SearchProducts />} />
             </Route>
-            <Route path="orders" element={<MyOrders />} />
-            <Route path="basket" element={<Basket />} />
-            
+            <Route path="orders" element={<PrivateRoute><MyOrders /></PrivateRoute> } />
+            <Route path="basket" element={<PrivateRoute> <Basket /> </PrivateRoute> } />
         </Routes>
 
     );

@@ -1,0 +1,15 @@
+.product-card__counter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .product-card__input {
+    width: 60px;
+    text-align: center;
+  }
+  
+  .product-card__button {
+    width: 40px;
+  }

@@ -1,13 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import Axios from "axios";
 import "./loginForm.css";
 export function LoginForm() {
-    const [userName, setName] = useState("ieas-admin");
-    const [password, setPassword] = useState("ieas123456");
+    // const [userName, setName] = useState("ieas-admin");
+    // const [password, setPassword] = useState("ieas123456");
+    const [userName, setName] = useState("");
+    const [password, setPassword] = useState("");
     const [error, setError] = useState(false);
     const [errorAuth, setErrorAuth] = useState(null);
     const urlLogin = "https://dummyjson.com/auth/login";
+    const navigate = useNavigate();
+
+    useEffect(() => {
+      console.log("Limpia todo...");
+      localStorage.removeItem('cart');
+      localStorage.removeItem('token');
+
+    },[])
+
     const AUTHUSER={
       username: 'emilys',
       password: 'emilyspass',
@@ -29,6 +42,7 @@ export function LoginForm() {
             Axios.post(urlLogin,userLogin, { headers: { 'Content-Type': 'application/json' },})
             .then(res => {
               localStorage.setItem('token', res.data.token);
+              navigate(`/home`);
               console.log(res.data);
             })
             .catch(error => console.error(error));
@@ -52,12 +66,14 @@ export function LoginForm() {
         <form className="form-container__form"
           onSubmit={handleSubmit}>
           <div className="form-container__group mb-3">
-            <label htmlFor="exampleFormControlInput1" className="form-container__label form-label">Usuario</label>
-            <input type="text" className="form-container__input form-control" id="exampleFormControlInput1" value={userName} onChange={e => setName(e.target.value)} placeholder="Ingresa nombre del usuario" />
+            <label htmlFor="exampleFormControlInput1" className="form-container__label form-label">User Name</label>
+            <input type="text" className="form-container__input form-control" id="exampleFormControlInput1"
+            value={userName} onChange={e => setName(e.target.value)} placeholder="Type yur user name" />
           </div>
           <div className="form-container__group mb-3">
-            <label htmlFor="exampleFormControlTextarea1" className="form-container__label form-label">Contraseña</label>
-            <input type="password" className="form-container__input form-control" id="exampleFormControlTextarea1" value={password} onChange={e => setPassword(e.target.value)} placeholder="Ingresa contraseña del usuario" />
+            <label htmlFor="exampleFormControlTextarea1" className="form-container__label form-label">Password</label>
+            <input type="password" className="form-container__input form-control" id="exampleFormControlTextarea1"
+            value={password} onChange={e => setPassword(e.target.value)} placeholder="Type your password" />
           </div>
           {errorAuth != null && <div class="row">
             <div class="col-12">

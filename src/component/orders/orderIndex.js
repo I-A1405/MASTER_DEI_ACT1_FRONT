@@ -29,14 +29,17 @@ function OrderIndex() {
                                 </div>
                                 <div className="card-body">
                                     <div className="row">
-                                        <div className="col-4" >
+                                        <div className="col-3" >
                                             <p className="card-text">Total Products: <b>{order.totalProducts}</b> </p>
                                         </div>
-                                        <div className="col-4" >
+                                        <div className="col-3" >
                                             <p className="card-text">Total Quantity: <b>{order.totalQuantity}</b> </p>
                                         </div>
-                                        <div className="col-4" >
-                                            <h5 className="card-title">Total: {order.id}</h5>
+                                        <div className="col-3" >
+                                        <p className="card-text">Discounted Total: <b>{order.discountedTotal}</b></p>
+                                        </div>
+                                        <div className="col-3" >
+                                            <h5 className="card-title">Total: {order.total}</h5>
                                         </div>
                                     </div>
                                     <div className="row">
