@@ -8,10 +8,10 @@ function OrderIndex() {
 
     useEffect(() => {
         // Debe ser dinamico con base el userAUtenticado
-        Axios.get('https://dummyjson.com/carts/user/33').then(res => {
-            setOrders(res.data.carts);
+        //http://192.168.0.100:8060/order/user/1
+        Axios.get(`${process.env.REACT_APP_API_URL}order/user/1`).then(res => {
+            setOrders(res.data);
             setLoadOrders(true);
-            console.log("Respuesta ", res.data)
         });
     }, []);
     return (
@@ -23,27 +23,27 @@ function OrderIndex() {
                 {loadOrders &&
                     orders.map(order => {
                         return (
-                            <div key={order.id} className="col-12 card order-cart" >
+                            <div key={order.order.id} className="col-12 card order-cart" >
                                 <div class="card-header">
-                                    Order Number: {order.id}
+                                    Order Number: {order.order.id}
                                 </div>
                                 <div className="card-body">
                                     <div className="row">
                                         <div className="col-3" >
-                                            <p className="card-text">Total Products: <b>{order.totalProducts}</b> </p>
+                                            <p className="card-text">Total Products: <b>{order.order.totalProducts}</b> </p>
                                         </div>
                                         <div className="col-3" >
-                                            <p className="card-text">Total Quantity: <b>{order.totalQuantity}</b> </p>
+                                            <p className="card-text">Total Quantity: <b>{order.order.total}</b> </p>
                                         </div>
                                         <div className="col-3" >
-                                        <p className="card-text">Discounted Total: <b>{order.discountedTotal}</b></p>
+                                        <p className="card-text">Discounted Total: <b>{order.order.discountedTotal}</b></p>
                                         </div>
                                         <div className="col-3" >
-                                            <h5 className="card-title">Total: {order.total}</h5>
+                                            <h5 className="card-title">Total: {order.order.total}</h5>
                                         </div>
                                     </div>
                                     <div className="row">
-                                            <OrdersList products={order.products} column={"col-4"} ></OrdersList>
+                                            <OrdersList products={order.orderItems} column={"col-4"} ></OrdersList>
                                     </div>
                                 </div>
                             </div>

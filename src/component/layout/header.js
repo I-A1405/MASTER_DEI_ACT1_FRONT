@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 import { FaDoorClosed, FaShoppingBag } from 'react-icons/fa';
 
 import './header.css';
-function Header({ userName }) {
+function Header() {
   const [cartItems, setCartItems] = useState(0);
+  const [userName, setName] = useState("");
 
   const updateCartCount = () => {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -18,6 +19,7 @@ function Header({ userName }) {
     updateCartCount(); // Initial load
     const handleStorageChange = () => updateCartCount();
     window.addEventListener('storage', handleStorageChange);
+    setName(localStorage.getItem('userName'));
 
     return () => {
       window.removeEventListener('storage', handleStorageChange);
@@ -33,7 +35,7 @@ function Header({ userName }) {
         <div className="collapse navbar-collapse" id="navbar">
           <ul className="navbar-nav ms-auto navbar-user">
             <li className="nav-item">
-              <Link className="nav-link" >Ivan E. Avila</Link>
+              <Link className="nav-link" >{userName}</Link>
             </li>
             <li className="nav-item">
               <Link to="/basket" className="nav-link" >

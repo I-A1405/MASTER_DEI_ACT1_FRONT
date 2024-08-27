@@ -7,10 +7,9 @@ function GetAllProducts() {
     const [loadProducts, setLoadProducts] = useState(false);
 
     useEffect(() => {
-        Axios.get('https://dummyjson.com/products').then(res => {
-            setProducts(res.data.products);
+        Axios.get(`${process.env.REACT_APP_API_URL}products`).then(res => {
+            setProducts(res.data);
             setLoadProducts(true);
-            // console.log("Carga los productos", res.data.products);
         })
     }, []);
     return ( 

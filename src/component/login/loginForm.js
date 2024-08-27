@@ -11,7 +11,7 @@ export function LoginForm() {
     const [password, setPassword] = useState("");
     const [error, setError] = useState(false);
     const [errorAuth, setErrorAuth] = useState(null);
-    const urlLogin = "https://dummyjson.com/auth/login";
+    const urlLogin = `${process.env.REACT_APP_API_URL}login`;
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -21,11 +21,7 @@ export function LoginForm() {
 
     },[])
 
-    const AUTHUSER={
-      username: 'emilys',
-      password: 'emilyspass',
-      expiresInMins: 30, // optional, defaults to 60
-    };
+    
     const handleSubmit = (e) => {
         setErrorAuth(null);
         e.preventDefault();
@@ -36,20 +32,20 @@ export function LoginForm() {
         setError(false);
         try{
           const userLogin ={username: userName, password};
-          if(userName === "ieas-admin" && password === "ieas123456" ) {
-            Object.assign(userLogin,AUTHUSER);
-            console.log("El valor del objeto extendido ", userLogin);
+          
             Axios.post(urlLogin,userLogin, { headers: { 'Content-Type': 'application/json' },})
             .then(res => {
-              localStorage.setItem('token', res.data.token);
-              navigate(`/home`);
-              console.log(res.data);
+              if( res.status === 200 && res.data.token.length > 0) {
+                localStorage.setItem('token', res.data.token);
+                localStorage.setItem('userName', res.data.username);
+                navigate(`/home`);
+              }else{
+                setErrorAuth("Verifica las credenciales");
+              }
+              
             })
             .catch(error => console.error(error));
-          }
-          else{
-            setErrorAuth("Verifica las credenciales");
-          }
+          
 
         }catch(error){
           setErrorAuth(error);

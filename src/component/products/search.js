@@ -9,8 +9,8 @@ function SearchProducts() {
     const [mySearch] = useSearchParams();
     useEffect(() => {
         console.log("valor del serach parameters --> ",mySearch.get("keyword"));
-        Axios.get(`https://dummyjson.com/products/search?q=${mySearch.get("keyword")}`).then(res => {
-            setProducts(res.data.products);
+        Axios.get(`${process.env.REACT_APP_API_URL}products/search?query=${mySearch.get("keyword")}`).then(res => {
+            setProducts(res.data);
             setLoadProducts(true);
             // console.log("Carga los productos", res.data.products);
         })
